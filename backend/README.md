@@ -51,26 +51,35 @@ backend/
 │   ├── base.py         # A base class for all AI providers
 │   ├── factory.py      # A factory for creating the correct AI client
 │   └── ..._client.py   # Clients for specific AI providers
+│
 ├── api/                # Your API endpoints (URLs)
 │   ├── deps.py         # Handles dependencies (e.g., getting current user)
 │   └── v1/             # Version 1 of your API
 │       └── ... .py     # Your endpoint files
+│
 ├── core/               # Core application logic
 │   ├── config.py       # Manages application settings from .env
 │   └── security.py     # Handles password hashing and tokens
+│
 ├── crud/               # Create, Read, Update, Delete (CRUD) database operations
 │   └── user.py         # CRUD functions for the User model
+│
 ├── db/                 # Database-related code
 │   ├── __init__.py     # Initializes the database
 │   ├── base_class.py   # A base class for your database models
 │   └── session.py      # Manages your database connection
+│
 ├── models/             # Defines the structure of your database tables
 │   └── user.py         # The User table model
+│
 ├── schemas/            # Pydantic schemas for data validation and serialization
 │   ├── token.py        # Schemas for authentication tokens
 │   └── user.py         # Schemas for the User model
+│
 ├── .env.example        # Example environment variables
+│
 ├── main.py             # The heart of your application, where the FastAPI app is created
+│
 └── requirements.txt    # Project dependencies
 ```
 
@@ -114,5 +123,15 @@ Now that you're set up, here's how you can start building your own features. Eac
 1.  **Create a New Client:** In the `ai/` folder, create `my_ai_client.py`.
 2.  **Implement the Interface:** Inside the new file, create a `MyAIClient` class that inherits from `LLMProvider` and implements the `get_response` method.
 3.  **Update the Factory:** In `ai/factory.py`, import your new `MyAIClient` and add it as an option in the `get_llm_provider` function.
+
+### 4. Explore Track-Specific Modules
+
+This starter kit includes special directories with ideas and resources tailored to each of the HackRice 15 tracks. Whether you're passionate about social impact, healthcare, or another area, these modules can provide a great starting point for your project.
+
+*   [Social Impact](./track_specific/social_impact/README.md)
+*   [Healthcare](./track_specific/healthcare/README.md)
+*   [Productivity/Education](./track_specific/productivity_education/README.md)
+*   [Sports](./track_specific/sports/README.md)
+*   [Entrepreneurship](./track_specific/entrepreneurship/README.md)
 
 Happy hacking!
