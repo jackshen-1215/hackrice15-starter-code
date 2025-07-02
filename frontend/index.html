@@ -1,22 +1,49 @@
 <!DOCTYPE html>
+<!-- this declaration tells the browser ur using HTML5 -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <!-- the charset defines how text is encoded. UTF-8 supports all characters. -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Productivity Tracker</title>
+  <!-- this makes the page responsive on all screen sizes -->
+
+  <title>Task Manager</title>
+  <!-- the title appears in the browser tab -->
+
   <link rel="stylesheet" href="style.css" />
+  <!-- this line links an external CSS file that contains styling rules -->
 </head>
+
 <body>
+  <!-- the content inside <body> is what gets displayed on the page -->
+
   <div class="container">
-    <h1>📋 Task Manager</h1>
+    <!-- This <div> acts as a wrapper for everything on the page.
+         A <div> is a block-level container element used to group content. -->
+
+    <h1>Task Manager</h1>
+    <!-- <h1> is the main heading. You can have h1 through h6 for decreasing importance. -->
+
     <form id="task-form">
+      <!-- <form> is used to collect user input. We give it an ID so JavaScript can reference it. -->
+
       <input type="text" id="task-input" placeholder="Enter your task..." required />
+      <!-- <input> is a field where users type.
+           type="text" makes it a single-line text field.
+           placeholder shows gray hint text inside the box.
+           required means the form won't submit if this is empty. -->
+
       <button type="submit">Add Task</button>
+      <!-- <button> submits the form. type="submit" tells the browser to trigger the form's submit event. -->
     </form>
 
     <ul id="task-list"></ul>
+    <!-- <ul> means "unordered list" (aka bullets). Each task will be shown as a list item <li>.
+         We provided code in JavaScript by appending new <li> elements here. -->
   </div>
 
   <script src="script.js"></script>
+  <!-- This loads your JavaScript file, which controls the dynamic behavior of the page -->
 </body>
 </html>
