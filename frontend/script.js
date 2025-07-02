@@ -1,3 +1,13 @@
+/* crash course on the JS topics that are used:
+- DOM: the Document Object Model (DOM) is how JS interacts with the HTML you have!
+- Event Listeners: JS lets you "listen" for things like clicks or form submissions. 
+                   super important when making an interactable webpage like a planner/calender
+- Fetch: This is how we talk to the FastAPI backend. fetch() sets an HTTP request, await waits for the response!
+- async/await: Asynchronous basically means that u don't want to block the browser while waiting for something 
+               like a network request
+- Loops: Similar to any coding language, we made use of loops to streamline tasks. you'll notice that we used a foreach loop to write code
+        that can display a to-do list/tasks for a team.
+*/
 // get references to the main HTML elements we're gonna interact with
 const taskForm = document.getElementById("task-form");    // form for adding new tasks
 const taskInput = document.getElementById("task-input");  // input box where user types the task
