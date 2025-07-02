@@ -1,48 +1,74 @@
+/* The body selector targets the entire page */
 body {
-  font-family: sans-serif;
-  background: #f9f9f9;
-  display: flex;
-  justify-content: center;
-  padding: 2rem;
+  font-family: sans-serif;         /* Sets the font for the whole page */
+  background: #f9f9f9;             /* Light gray background color */
+  display: flex;                   /* Enables flexbox layout */
+  justify-content: center;         /* Centers content horizontally */
+  padding: 2rem;                   /* Adds space around the content */
 }
 
+/* The .container class is applied to the main content box */
 .container {
-  background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 500px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  background: white;               /* White background for contrast */
+  padding: 2rem;                   /* Adds space inside the box */
+  border-radius: 10px;             /* Rounds the corners */
+  width: 100%;                     /* Makes the container responsive */
+  max-width: 500px;                /* Caps the size so it doesn’t stretch too wide */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adds a soft shadow for depth */
 }
 
+/* The form section that includes the input and button */
 form {
-  display: flex;
-  gap: 1rem;
+  display: flex;                   /* Arranges input and button in a row */
+  gap: 1rem;                       /* Adds space between them */
 }
 
+/* The text input field */
 input {
-  flex: 1;
-  padding: 0.5rem;
-  font-size: 1rem;
+  flex: 1;                         /* Makes input expand to fill remaining space */
+  padding: 0.5rem;                 /* Adds space inside the box */
+  font-size: 1rem;                 /* Makes the text easier to read */
 }
 
+/* The submit button */
 button {
-  padding: 0.5rem 1rem;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
+  padding: 0.5rem 1rem;            /* Top-bottom and left-right padding */
+  background: #007bff;            /* Blue background color */
+  color: white;                   /* White text color */
+  border: none;                   /* Removes default border */
+  border-radius: 5px;             /* Slightly rounds the corners */
+  cursor: pointer;                /* Changes cursor to pointer on hover */
 }
 
+/* The task list container (unordered list) */
 ul {
-  margin-top: 1rem;
-  list-style: none;
-  padding: 0;
+  margin-top: 1rem;               /* Adds space above the list */
+  list-style: none;               /* Removes bullet points */
+  padding: 0;                     /* Removes default padding */
 }
 
+/* Each task item (list item) */
 li {
-  background: #f1f1f1;
-  padding: 0.75rem;
-  border-radius: 5px;
-  margin-bottom: 0.5rem;
+  display: flex;                  /* Arrange checkbox, text, and button in a row */
+  align-items: center;           /* Align items vertically */
+  justify-content: space-between;/* Space out the text and delete button */
+  background: #f1f1f1;            /* Light background for each item */
+  padding: 0.75rem;               /* Inner spacing */
+  border-radius: 5px;             /* Rounds the corners */
+  margin-bottom: 0.5rem;          /* Adds space between tasks */
+}
+
+/* The task description text */
+li span {
+  flex: 1;                        /* Let the text span take available space */
+  margin: 0 0.5rem;               /* Adds space between checkbox and delete button */
+}
+
+/* The delete button inside each task */
+li button {
+  background: none;              /* Transparent background */
+  border: none;                  /* No border */
+  font-size: 1rem;               /* Medium text size */
+  cursor: pointer;              /* Pointer on hover */
+  color: red;                   /* Optional: make delete button red */
 }
