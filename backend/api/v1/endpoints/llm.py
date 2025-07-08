@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 
-from ai.factory import get_llm_provider
-from api import deps
+from backend.ai.factory import get_llm_provider
+from backend.api import deps
 
 router = APIRouter()
 

@@ -1,7 +1,7 @@
 import anthropic
 
-from ai.base import LLMProvider
-from core.config import settings
+from backend.ai.base import LLMProvider
+from backend.core.config import settings
 
 class AnthropicClient(LLMProvider):
     def __init__(self):

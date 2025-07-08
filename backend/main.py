@@ -11,6 +11,6 @@ def read_root():
     return {"message": "Welcome to the HackRice 15 Starter Backend!"}
 
 # Add routers
-from api.v1.api import api_router as api_router_v1
+from backend.api.v1.api import api_router as api_router_v1
 
 app.include_router(api_router_v1, prefix="/api/v1")

@@ -4,14 +4,14 @@ Welcome to the HackRice 15 Starter Backend! This guide will walk you through set
 
 ## Getting Started: Your First Steps
 
-Follow these steps to get your backend up and running.
+Follow these steps to get your backend up and running from the project's root directory.
 
 ### 1. Install Dependencies
 
 This project uses a few external libraries, and they are listed in the `requirements.txt` file. Open your terminal and run this command to install them:
 
 ```bash
-pip install -r requirements.txt
+pip install -r backend/requirements.txt
 ```
 
 ### 2. Configure Your Environment
@@ -21,22 +21,22 @@ Your application needs some secret keys, like an API key for a service you're us
 First, copy the example file:
 
 ```bash
-cp .env.example .env
+cp backend/.env.example backend/.env
 ```
 
-Next, open the new `.env` file and add your secret keys. You'll need to generate a `SECRET_KEY` for encoding your authentication tokens. You can use a command like `openssl rand -hex 32` to generate one.
+Next, open the new `backend/.env` file and add your secret keys. You'll need to generate a `SECRET_KEY` for encoding your authentication tokens. You can use a command like `openssl rand -hex 32` to generate one.
 
 ### 3. Run the Development Server
 
-Now you're ready to start the server!
+Now you're ready to start the server! From the project root, run:
 
 ```bash
-uvicorn main:app --reload
+uvicorn backend.main:app --reload
 ```
 
 This command does a few things:
 *   `uvicorn`: The server that runs your application.
-*   `main:app`: Tells `uvicorn` to look for an object named `app` in the `main.py` file.
+*   `backend.main:app`: Tells `uvicorn` to look for an object named `app` in the `backend/main.py` file.
 *   `--reload`: Automatically restarts the server whenever you make changes to the code.
 
 Your API is now live at `http://localhost:8000`.
@@ -53,21 +53,22 @@ backend/
 │   └── ..._client.py   # Clients for specific AI providers
 │
 ├── api/                # Your API endpoints (URLs)
-│   ├── deps.py         # Handles dependencies (e.g., getting current user)
+│   ├── deps.py         # Handles dependencies (e.g., getting the current user)
 │   └── v1/             # Version 1 of your API
-│       └── ... .py     # Your endpoint files
+│       ├── api.py      # Main router for API v1
+│       └── endpoints/  # Your endpoint files (e.g., auth.py)
 │
 ├── core/               # Core application logic
 │   ├── config.py       # Manages application settings from .env
 │   └── security.py     # Handles password hashing and tokens
 │
 ├── crud/               # Create, Read, Update, Delete (CRUD) database operations
+│   ├── base.py         # A generic base class for CRUD operations
 │   └── user.py         # CRUD functions for the User model
 │
 ├── db/                 # Database-related code
-│   ├── __init__.py     # Initializes the database
 │   ├── base_class.py   # A base class for your database models
-│   └── session.py      # Manages your database connection
+│   └── session.py      # Manages your database connection and session
 │
 ├── models/             # Defines the structure of your database tables
 │   └── user.py         # The User table model
@@ -124,14 +125,34 @@ Now that you're set up, here's how you can start building your own features. Eac
 2.  **Implement the Interface:** Inside the new file, create a `MyAIClient` class that inherits from `LLMProvider` and implements the `get_response` method.
 3.  **Update the Factory:** In `ai/factory.py`, import your new `MyAIClient` and add it as an option in the `get_llm_provider` function.
 
-### 4. Explore Track-Specific Modules
+### 4. Designing Your Own Modules
 
-This starter kit includes special directories with ideas and resources tailored to each of the HackRice 15 tracks. Whether you're passionate about social impact, healthcare, or another area, these modules can provide a great starting point for your project.
+As your application grows, you'll want to add new features. The best way to do this is by creating self-contained **modules**. A module is a collection of related code that handles a specific piece of functionality (e.g., a blog, user profiles, or product inventory).
 
-*   [Social Impact](./track_specific/social_impact/README.md)
-*   [Healthcare](./track_specific/healthcare/README.md)
-*   [Productivity/Education](./track_specific/productivity_education/README.md)
-*   [Sports](./track_specific/sports/README.md)
-*   [Entrepreneurship](./track_specific/entrepreneurship/README.md)
+**The Philosophy:** A modular design keeps your code organized, makes it easier to test, and allows different team members to work on different features at the same time without conflicts. Each module should have a clear responsibility.
+
+**Anatomy of a Feature Module (Example: A "Blog" Module):**
+
+A complete feature module typically includes:
+
+1.  **Models (`models/blog.py`):** Define the database tables for your feature, like `Post` and `Comment`. These models would include relationships (e.g., a `Post` has many `Comments`).
+2.  **Schemas (`schemas/blog.py`):** Create Pydantic schemas for data validation. You'd have schemas for creating a post (`PostCreate`), reading a post (`Post`), and creating a comment (`CommentCreate`).
+3.  **CRUD (`crud/blog.py`):** Write the database logic. You could create a `CRUDPost` class that inherits from the generic `CRUDBase` to handle posts, and a `CRUDComment` for comments.
+4.  **API Endpoints (`api/v1/endpoints/blog.py`):** Expose your feature through a new `APIRouter`. This file would contain endpoints like `POST /blog/posts`, `GET /blog/posts/{id}`, and `POST /blog/posts/{id}/comments`.
+
+**How to Structure Your Code:**
+
+*   **Group by Feature:** For larger applications, you might even create a new directory for each module (e.g., `backend/blog/`) that contains its own `models.py`, `schemas.py`, `crud.py`, and `endpoints.py`.
+*   **Keep it Simple:** For a hackathon, keeping models, schemas, and CRUD operations in their respective top-level directories (`models/`, `schemas/`, `crud/`) is perfectly fine. The key is to be consistent.
+
+**Extending the Core:**
+
+Don't be afraid to extend the core modules when needed:
+
+*   **`core/security.py`:** You might add new functions for handling permissions or different authentication methods.
+*   **`core/config.py`:** Add new configuration variables from your `.env` file as your application needs them.
+*   **`db/`:** If you decide to use a different database or need more complex session management, you can modify the code here.
+
+By following these principles, you can build a clean, scalable, and maintainable backend for your project.
 
 Happy hacking!

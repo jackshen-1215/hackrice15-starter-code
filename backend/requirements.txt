@@ -15,3 +15,7 @@ pydantic-settings
 openai
 anthropic
 google-generativeai
+
+# Other
+python-multipart
+email-validator

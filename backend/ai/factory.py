@@ -1,7 +1,7 @@
-from ai.base import LLMProvider
-from ai.openai_client import OpenAIClient
-from ai.anthropic_client import AnthropicClient
-from ai.gemini_client import GeminiClient
+from backend.ai.base import LLMProvider
+from backend.ai.openai_client import OpenAIClient
+from backend.ai.anthropic_client import AnthropicClient
+from backend.ai.gemini_client import GeminiClient
 
 def get_llm_provider(provider_name: str) -> LLMProvider:
     if provider_name == "openai":
