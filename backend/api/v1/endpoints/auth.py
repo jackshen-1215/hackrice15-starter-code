@@ -37,11 +37,11 @@ def create_user(
     """
     Create new user.
     """
-    user = crud.user.get_user_by_email(db, email=user_in.email)
+    user = crud.user.get_by_email(db, email=user_in.email)
     if user:
         raise HTTPException(
             status_code=400,
             detail="The user with this username already exists in the system.",
         )
-    user = crud.user.create_user(db, obj_in=user_in)
+    user = crud.user.create(db, obj_in=user_in)
     return user
